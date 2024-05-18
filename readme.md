@@ -17,6 +17,12 @@ install requirements
 pip install -r requirements.txt
 ```
 
+Migrate database 
+```
+python3 manage.py migrate
+python3 manage.py makemigrations
+```
+
 # Running server
 
 Open terminal, and go inside ``mynote`` folder
