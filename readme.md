@@ -34,3 +34,11 @@ python3 manage.py runserver
 ```
 
 Your app run default in localhost:8000
+
+# Create SuperUser
+
+```
+python3 manage.py createsuperuser
+```
+
+You can login your superuser at http://localhost:8000/admin/
