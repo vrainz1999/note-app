@@ -9,6 +9,29 @@ Posts
 
 <div class="container mx-auto my-8 grid grid-cols-4 gap-4">
 
+    {% for post in posts %}
+
+    <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+        <img alt="" src="https://i.pinimg.com/originals/66/79/fa/6679fa3357491a1633db4271a9b01de8.jpg"
+            class="h-56 w-full object-cover" />
+
+        <div class="bg-white p-4 sm:p-6">
+
+            <span class="block text-xs text-gray-500"> <span class="font-bold">Admin</span> | <time
+                    datetime="2022-10-10" class="text-xs text-gray-500"> {{ post.created_at }} </time> </span>
+
+            <a href="#">
+                <h3 class="mt-0.5 text-lg text-gray-900">{{ post.title }}</h3>
+            </a>
+
+            <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+                {{ post.content }}
+            </p>
+        </div>
+    </article>
+
+    {% endfor %}
+
     <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
         <img alt="" src="https://images.unsplash.com/photo-1715645944065-b1288f628a70"
             class="h-56 w-full object-cover" />
