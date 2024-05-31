@@ -33,3 +33,34 @@ def post_create(request):
     form.fields['slug'].widget.attrs['class'] = 'title w-full block mb-4 bg-gray-100 border border-gray-300 p-2 mb-4 outline-none'
 
     return render(request, 'posts/post_create.html', { 'form': form })
+
+def post_update(request, slug):
+    post = Post.objects.get(slug=slug)
+    form = forms.CreatePost(request.POST or None, request.FILES or None, instance=post)
+    if form.is_valid():
+        # delete image if new image
+        if request.FILES.get('image'):
+            post.image.delete(False)
+            post.image = request.FILES.get('image')
+            post.save()
+        form.save()
+        return redirect('posts:list')
+    else:
+        form.fields['title'].initial = post.title
+        form.fields['content'].initial = post.content
+        form.fields['slug'].initial = post.slug
+    
+    # Add tailwindcss to Form
+    form.fields['title'].widget.attrs['class'] = 'title w-full block mb-4 bg-gray-100 border border-gray-300 p-2 mb-4 outline-none'
+
+    form.fields['content'].widget.attrs['class'] = 'description w-full block mb-4 bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none'
+    
+    form.fields['slug'].widget.attrs['class'] = 'title w-full block mb-4 bg-gray-100 border border-gray-300 p-2 mb-4 outline-none'
+
+    return render(request, 'posts/post_update.html', { 'form': form })
+
+def post_delete(request, slug):
+    post = Post.objects.get(slug=slug)
+    post.image.delete(False)
+    post.delete()
+    return redirect('posts:list')

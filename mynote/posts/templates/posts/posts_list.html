@@ -12,8 +12,7 @@ Posts
     {% for post in posts %}
 
     <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
-        <img alt="{{ post.title }}" src="{{ post.image.url }}"
-            class="h-56 w-full object-cover" />
+        <img alt="{{ post.title }}" src="{{ post.image.url }}" class="h-56 w-full object-cover" />
 
         <div class="bg-white p-4 sm:p-6">
 
@@ -28,6 +27,14 @@ Posts
                 {{ post.content }}
             </p>
         </div>
+
+        <!-- delete and update button  -->
+        <div class="flex justify-end">
+            <a href="{% url 'posts:update' slug=post.slug %}" class="text-blue-500 hover:text-blue-700">Edit</a>
+            <a href="{% url 'posts:delete' slug=post.slug %}" class="text-red-500 hover:text-red-700">Delete</a>
+        </div>
+
+
     </article>
 
     {% endfor %}
@@ -53,7 +60,7 @@ Posts
             </p>
         </div>
     </article>
-    
+
 
 </div>
 
