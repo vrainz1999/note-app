@@ -77,18 +77,22 @@
                         </button>
                     </div>
 
-                    <!-- Loggin button  -->
-                    <button
-                        class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                        
-
-                        <a href="{% url 'users:login' %}" class="mx-1">Login</a>
-                    </button>
-
+                    
+                    {% if user.is_authenticated %}
                     <form class="logout" action="{% url 'users:logout' %}" method="post">
                         {% csrf_token %} 
                         <button class="logout-button flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80" aria-label="User Logout" title="User Logout">Logout 👋</button>
                     </form>
+
+                    {% else %}
+                        <!-- Loggin button  -->
+                        <button
+                            class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                            
+
+                            <a href="{% url 'users:login' %}" class="mx-1">Login</a>
+                        </button>
+                    {% endif %}
                 </div>
 
 
