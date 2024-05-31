@@ -20,7 +20,7 @@ Posts
             <span class="block text-xs text-gray-500"> <span class="font-bold">Admin</span> | <time
                     datetime="2022-10-10" class="text-xs text-gray-500"> {{ post.created_at }} </time> </span>
 
-            <a href="#">
+            <a href="{% url 'posts:detail' slug=post.slug %}">
                 <h3 class="mt-0.5 text-lg text-gray-900">{{ post.title }}</h3>
             </a>
 
