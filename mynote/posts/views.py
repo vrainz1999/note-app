@@ -68,3 +68,8 @@ def post_delete(request, slug):
     post.image.delete(False)
     post.delete()
     return redirect('posts:list')
+
+def post_search(request):
+    query = request.GET.get('search')
+    posts = Post.objects.filter(title__icontains=query)
+    return render(request, 'posts/posts_list.html', { 'posts': posts })
