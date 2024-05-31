@@ -18,6 +18,9 @@ def post_create(request):
         form = forms.CreatePost(request.POST, request.FILES)
         if form.is_valid():
             # save with user
+            newpost = form.save(commit=False)
+            newpost.author = request.user
+            newpost.save()
             return redirect('posts:list')
     else:
         form = forms.CreatePost()
