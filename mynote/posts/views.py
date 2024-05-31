@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Post
 from django.contrib.auth.decorators import login_required
 from . import forms
+import os
 
 # Create your views here.
 def posts_list(request):
@@ -35,16 +36,19 @@ def post_create(request):
     return render(request, 'posts/post_create.html', { 'form': form })
 
 def post_update(request, slug):
+    
+
     post = Post.objects.get(slug=slug)
-    form = forms.CreatePost(request.POST or None, request.FILES or None, instance=post)
-    if form.is_valid():
-        # delete image if new image
-        if request.FILES.get('image'):
-            post.image.delete(False)
-            post.image = request.FILES.get('image')
-            post.save()
-        form.save()
+    # only for author
+    if not request.user == post.author:
         return redirect('posts:list')
+    form = forms.CreatePost(instance=post)
+    if request.method == 'POST':
+        form = forms.CreatePost(request.POST, request.FILES, instance=post)
+        # form = forms.CreatePost(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('posts:list')
     else:
         form.fields['title'].initial = post.title
         form.fields['content'].initial = post.content

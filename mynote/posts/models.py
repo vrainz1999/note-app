@@ -7,7 +7,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     slug = models.SlugField(unique=True, default=None)
-    image = models.ImageField(upload_to='images/', default='no_image.jpg')
+    image = models.ImageField(upload_to='images/', default='images/no_image.jpg', blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     created_at = models.DateTimeField(auto_now_add=True)
