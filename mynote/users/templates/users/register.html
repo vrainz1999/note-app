@@ -16,7 +16,7 @@ Register
 
                     <form action="/users/register/" class="form-with-validation mt-8" method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        {{ form }}
                         <button type="submit" class="form-submit mt-3 text-lg font-semibold 
                   bg-gray-800 w-full text-white rounded-lg
                   px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
