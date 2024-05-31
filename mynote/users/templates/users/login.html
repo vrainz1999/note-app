@@ -18,6 +18,9 @@ Home
                         <div class="mx-auto max-w-lg">
                             {% csrf_token %}
                             {{ form }}
+                            {% if request.GET.next %}
+                                <input type="hidden" name="text" value="{{ request.GET.next }}" />
+                            {% endif %}
                             <span class="block text-xs text-gray-500 font-bold	"><a href="{% url 'users:register' %}">Don't have
                                     account?</a></span>
                             <button class="form-submit text-lg font-semibold 
