@@ -12,12 +12,12 @@ Posts
     {% for post in posts %}
 
     <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
-        <img alt="" src="https://i.pinimg.com/originals/66/79/fa/6679fa3357491a1633db4271a9b01de8.jpg"
+        <img alt="{{ post.title }}" src="{{ post.image.url }}"
             class="h-56 w-full object-cover" />
 
         <div class="bg-white p-4 sm:p-6">
 
-            <span class="block text-xs text-gray-500"> <span class="font-bold">Admin</span> | <time
+            <span class="block text-xs text-gray-500"> <span class="font-bold">{{ post.author }}</span> | <time
                     datetime="2022-10-10" class="text-xs text-gray-500"> {{ post.created_at }} </time> </span>
 
             <a href="{% url 'posts:detail' slug=post.slug %}">
