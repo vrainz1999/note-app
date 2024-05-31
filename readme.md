@@ -42,3 +42,9 @@ python3 manage.py createsuperuser
 ```
 
 You can login your superuser at http://localhost:8000/admin/
+
+# If you need static assets
+
+```
+python3 manage.py collectstatic
+```
