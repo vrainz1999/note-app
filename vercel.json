@@ -1,0 +1,13 @@
+{
+    "build": {
+      "env": {
+        "DJANGO_SETTINGS_MODULE": "mynote.settings.production"
+      },
+      "cmd": "pip install -r requirements.txt && cd mynode && python manage.py collectstatic --noinput"
+    },
+    "routes": [
+      { "src": "/mynote/static/(.*)", "dest": "/mynote/static/$1" },
+      { "src": "/mynote/(.*)", "dest": "index.html" }
+    ]
+  }
+  
